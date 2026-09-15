@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react';
 import { GoogleGenAI } from '@google/genai';
-import { MessageSquare, Sparkles, Send, RefreshCw, CheckCircle, XCircle, GraduationCap, FileText } from 'lucide-react';
-import { Btn, Panel, Inp } from '../ui';
+import { Sparkles, Send, RefreshCw, CheckCircle, XCircle, GraduationCap, FileText, ShieldAlert } from 'lucide-react';
+import { Btn, Inp } from '../ui';
 import { MathText } from '../MathText';
 
 interface SafeMarkdownProps {
@@ -148,6 +148,9 @@ export default function AITutor() {
   const [quizActive, setQuizActive] = useState(false);
   const [showExplanation, setShowExplanation] = useState(false);
   const [quizLoading, setQuizLoading] = useState(false);
+  const [quizNotice, setQuizNotice] = useState("");
+
+  const hasApiKey = !!import.meta.env.VITE_GEMINI_API_KEY;
 
   // Helper to convert media files to base64 structural parts for Gemini
   const fileToGenerativePart = async (file: File): Promise<{ inlineData: { data: string; mimeType: string } }> => {
@@ -165,6 +168,7 @@ export default function AITutor() {
   // Chat message submission (Supports Text + Multimodal Image/Audio uploads)
   const handleSendMessage = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!hasApiKey) return;
     if (!input.trim() && !fileInputRef.current?.files?.[0]) return;
 
     const userText = input;
@@ -203,7 +207,7 @@ Do NOT use computer-science markup or raw words like 'power' or slashes outside 
       setMessages([...updatedMessages, { role: 'model', text: response.text || "I couldn't process that response." }]);
     } catch (error) {
       console.error(error);
-      setMessages([...updatedMessages, { role: 'model', text: "Error: Failed to safely reach out to AI Core. Verify your API Key configuration." }]);
+      setMessages([...updatedMessages, { role: 'model', text: "I couldn't reach the AI service. Check that the Gemini API key is configured (VITE_GEMINI_API_KEY) and that this device has internet access." }]);
     } finally {
       setLoading(false);
     }
@@ -218,6 +222,7 @@ Do NOT use computer-science markup or raw words like 'power' or slashes outside 
     setSelectedAnswer(null);
     setScore(0);
     setShowExplanation(false);
+    setQuizNotice("");
 
     try {
       const prompt = `Generate a 5-question multiple-choice quiz about "${topic}". Provide varying difficulties from conceptual to computational arithmetic.
@@ -260,6 +265,7 @@ Return the response strictly adhering to the specified JSON schema representatio
     } catch (error) {
       console.error(error);
       setQuizActive(false);
+      setQuizNotice(hasApiKey ? "The quiz service could not be reached. Check your internet connection and try again." : "Quizzes need a Gemini API key.");
     } finally {
       setQuizLoading(false);
     }
@@ -285,6 +291,20 @@ Return the response strictly adhering to the specified JSON schema representatio
 
   return (
     <div className="flex flex-col md:flex-row gap-6 h-full min-h-[500px]">
+      {!hasApiKey && (
+        <div className="flex items-start gap-3 rounded-xl border border-amber-500/50 bg-amber-500/10 p-3 text-sm text-[var(--c-text)] md:col-span-full">
+          <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0 text-amber-500" />
+          <div>
+            <span className="font-semibold text-amber-500">AI features are offline.</span>{" "}
+            <span className="text-[var(--c-text-dim)]">
+              The calculator, formulas, matrices, stats and unit conversions all work normally.
+              To enable chat and quizzes, set{" "}
+              <code className="rounded bg-[var(--c-bg2)] px-1 py-0.5 font-mono text-xs">VITE_GEMINI_API_KEY</code>{" "}
+              in <code className="rounded bg-[var(--c-bg2)] px-1 py-0.5 font-mono text-xs">.env.local</code> and rebuild.
+            </span>
+          </div>
+        </div>
+      )}
       {/* LEFT COLUMN: Workspace AI Chat Console */}
       <div className="flex-1 flex flex-col justify-between rounded-xl border border-[var(--c-card-border)] bg-[var(--c-soft)] p-4 shadow-sm">
         <div className="flex items-center gap-2 border-b border-[var(--c-card-border)] pb-3 mb-3">
@@ -331,11 +351,11 @@ Return the response strictly adhering to the specified JSON schema representatio
             onChange={setInput}
             placeholder="Ask a math query..."
             className="flex-1 font-mono"
-            disabled={loading}
+            disabled={loading || !hasApiKey}
           />
           <button
             type="submit"
-            disabled={loading}
+            disabled={loading || !hasApiKey}
             className="flex items-center justify-center p-2 rounded-lg bg-[var(--c-accent)] text-[var(--c-bg)] hover:brightness-110 transition disabled:opacity-40 cursor-pointer"
           >
             <Send className="w-5 h-5" />
@@ -364,9 +384,15 @@ Return the response strictly adhering to the specified JSON schema representatio
                 className="font-mono text-xs"
               />
             </div>
-            <Btn variant="accent" onClick={() => startQuiz(quizTopic)} className="w-full font-mono py-2.5 flex items-center justify-center gap-2">
+            <Btn variant="accent" onClick={() => startQuiz(quizTopic)} disabled={!hasApiKey} className="w-full font-mono py-2.5 flex items-center justify-center gap-2">
               <Sparkles className="w-4 h-4" /> Start Math Quiz
             </Btn>
+            {quizNotice && (
+              <div className="flex items-start gap-2 rounded-lg border border-amber-500/40 bg-amber-500/10 p-2.5 text-xs text-[var(--c-text)]">
+                <XCircle className="mt-0.5 h-3.5 w-3.5 shrink-0 text-amber-500" />
+                <span>{quizNotice}</span>
+              </div>
+            )}
           </div>
         ) : quizLoading ? (
           <div className="flex-1 flex flex-col items-center justify-center space-y-3">

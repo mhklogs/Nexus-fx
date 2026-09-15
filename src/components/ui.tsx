@@ -50,6 +50,7 @@ export function Inp({
   placeholder,
   className,
   rows,
+  disabled,
 }: {
   value?: string | number;
   onChange?: (v: string) => void;
@@ -58,6 +59,7 @@ export function Inp({
   placeholder?: string;
   className?: string;
   rows?: number;
+  disabled?: boolean;
 }) {
   const common =
     "w-full rounded-lg border border-[var(--c-card-border)] bg-[var(--c-bg2)] px-3 py-2 text-sm text-[var(--c-text)] outline-none transition focus:border-[var(--c-accent)] focus:ring-1 focus:ring-[var(--c-accent)] placeholder:text-[var(--c-text-dim)]";
@@ -67,6 +69,7 @@ export function Inp({
         value={value as string}
         rows={rows ?? 3}
         placeholder={placeholder}
+        disabled={disabled}
         onChange={(e) => onChange?.(e.target.value)}
         className={cn(common, "font-mono resize-y", className)}
       />
@@ -77,6 +80,7 @@ export function Inp({
       type={type}
       value={value as string | number}
       placeholder={placeholder}
+      disabled={disabled}
       onChange={(e) => onChange?.(e.target.value)}
       onInput={(e) => onInput?.((e.target as HTMLInputElement).value)}
       className={cn(common, className)}

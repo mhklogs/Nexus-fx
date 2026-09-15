@@ -149,6 +149,7 @@ export default function App() {
       className="min-h-screen w-full"
       style={{
         ...themeVars(theme),
+        colorScheme: theme.dark ? "dark" : "light",
         background:
           "radial-gradient(120% 120% at 15% 0%, var(--c-bg2) 0%, var(--c-bg) 55%)",
         color: "var(--c-text)",

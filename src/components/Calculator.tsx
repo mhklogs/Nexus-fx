@@ -12,7 +12,7 @@ import { MathText } from "./MathText";
 type Kind = "num" | "fn" | "op" | "eq" | "ctrl" | "ghost";
 type Action =
   | "shift" | "alpha" | "del" | "ac" | "equals"
-  | "left" | "right" | "up" | "down" | "mode" | "on";
+  | "left" | "right" | "up" | "down" | "mode" | "on" | "history";
 
 interface KeyDef {
   label: ReactNode;
@@ -223,7 +223,7 @@ export function Calculator({ engine }: { engine: CalcEngine }) {
     expr, caret, preview, lastResult, justEvaluated,
     shiftOn, alphaOn, angleMode, preferFrac,
     press, backspace, clearAll, equals, moveCaret, recall,
-    toggleShift, toggleAlpha, toggleAngle, toggleFrac,
+    toggleShift, toggleAlpha,
     history, showHistory, setShowHistory, toggleHistory, clearHistory, setExpr,
   } = engine;
 

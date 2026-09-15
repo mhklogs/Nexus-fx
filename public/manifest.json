@@ -1,16 +1,19 @@
 {
+  "id": "/",
   "short_name": "Nexus FX",
   "name": "Nexus FX Scientific Calculator",
+  "description": "A Casio fx-570ES PLUS style scientific calculator with matrix, statistics, formula, unit-conversion and AI-tutor workspaces.",
   "icons": [
     {
       "src": "/icon.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "1024x1024"
     },
     {
       "src": "/icon-512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "1024x1024",
+      "purpose": "any maskable"
     }
   ],
   "start_url": "/",

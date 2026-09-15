@@ -129,8 +129,8 @@ export function FormulaHub({ onPaste }: { onPaste: (expr: string) => void }) {
 function UnitConverter() {
   const [catId, setCatId] = useState("length");
   const cat = UNIT_CATEGORIES.find((c) => c.id === catId)!;
-  const [from, setFrom] = useState(cat.units[3].id);
-  const [to, setTo] = useState(cat.units[5].id);
+  const [from, setFrom] = useState(cat.units[Math.min(3, cat.units.length - 1)].id);
+  const [to, setTo] = useState(cat.units[Math.min(5, cat.units.length - 1)].id);
   const [val, setVal] = useState("1");
 
   const pickCat = (id: string) => {
