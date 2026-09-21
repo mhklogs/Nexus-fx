@@ -64,7 +64,7 @@ const MODULE_TITLES: Record<Exclude<ModuleId, "home">, string> = {
 
 export default function App() {
   const [themeId, setThemeId] = useState(() => {
-    return localStorage.getItem("nexusfx.theme") || "hardware";
+    return localStorage.getItem("nexusfx.theme") || "paper";
   });
   const [open, setOpen] = useState(false);
   const [module, setModule] = useState<ModuleId>("home");
@@ -149,7 +149,7 @@ export default function App() {
       className="min-h-screen w-full"
       style={{
         ...themeVars(theme),
-        colorScheme: "light",
+        colorScheme: theme.dark ? "dark" : "light",
         background: "var(--c-bg)",
         color: "var(--c-text)",
       }}
@@ -160,7 +160,7 @@ export default function App() {
           {/* hamburger + logo (top-left) */}
           <button
             onClick={() => setOpen(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--c-card-border)] text-[var(--c-text)] transition hover:border-[var(--c-accent)]"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--c-card-border)] text-[var(--c-text)] transition hover:border-[var(--c-accent)]"
             aria-label="Open menu"
           >
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
@@ -183,7 +183,7 @@ export default function App() {
             {deferredPrompt && (
               <button
                 onClick={handleInstall}
-                className="flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[var(--c-accent)] px-4 text-xs font-semibold text-white transition hover:opacity-90"
+                className="flex h-10 cursor-pointer items-center justify-center gap-2 rounded-full bg-[var(--c-eq)] px-5 text-xs font-semibold text-[var(--c-eq-text)] transition hover:-translate-y-0.5"
                 title="Install app on device"
                 aria-label="Install app"
               >
@@ -195,12 +195,12 @@ export default function App() {
                 <span className="hidden sm:inline">Install app</span>
               </button>
             )}
-            <span className="hidden rounded-md border border-[var(--c-card-border)] px-2 py-1 text-xs text-[var(--c-text-dim)] md:inline">
+            <span className="hidden rounded-full border border-[var(--c-card-border)] px-3 py-1 text-xs text-[var(--c-text-dim)] md:inline">
               {theme.name}
             </span>
             <button
               onClick={cycleTheme}
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--c-card-border)] text-[var(--c-text)] transition hover:border-[var(--c-accent)]"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--c-card-border)] text-[var(--c-text)] transition hover:border-[var(--c-accent)]"
               title="Cycle theme"
               aria-label="Cycle theme"
             >
@@ -219,15 +219,76 @@ export default function App() {
       {/* Main */}
       <main className="mx-auto max-w-6xl px-4 py-8">
         {module === "home" && (
-          <div className="flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-center">
-            <div className="flex flex-col items-center gap-6">
-              <Calculator engine={engine} />
-            </div>
-            <VariableMemory
-              vars={engine.vars}
-              setVar={engine.setVar}
-              clearVars={engine.clearVars}
-            />
+          <div className="flex flex-col gap-14">
+            <section className="mx-auto w-full max-w-3xl text-center">
+              <h1
+                className="font-display font-bold text-[var(--c-text)]"
+                style={{
+                  fontSize: "clamp(2.4rem, 3.6vw + 0.9rem, 3.5rem)",
+                  lineHeight: 1.08,
+                  letterSpacing: "-0.015em",
+                }}
+              >
+                A scientific calculator that respects your attention.
+              </h1>
+              <p
+                className="mx-auto mt-5 text-[var(--c-text-dim)]"
+                style={{ maxWidth: "65ch", fontSize: "clamp(1rem, 0.4vw + 0.95rem, 1.0625rem)", lineHeight: 1.65 }}
+              >
+                NEXUS fx pairs a faithful natural-V.P.A.M. keypad with matrix, probability,
+                statistics, formula and constants workspaces. It runs entirely in the browser,
+                stores nothing on a server and never asks you to create an account.
+              </p>
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+                <a
+                  href="#calculator"
+                  className="inline-flex h-12 items-center justify-center rounded-full bg-[var(--c-eq)] px-7 text-sm font-semibold text-[var(--c-eq-text)] transition hover:-translate-y-0.5"
+                >
+                  Open the keypad
+                </a>
+                <button
+                  type="button"
+                  onClick={() => setOpen(true)}
+                  className="inline-flex h-12 items-center justify-center rounded-full border border-[var(--c-card-border)] bg-[var(--c-soft)] px-7 text-sm font-semibold text-[var(--c-text)] transition hover:-translate-y-0.5 hover:border-[var(--c-accent)]"
+                >
+                  Browse workspaces
+                </button>
+              </div>
+            </section>
+
+            <section id="calculator" className="flex flex-col items-center gap-8 md:flex-row md:items-start md:justify-center">
+              <div className="flex flex-col items-center gap-6">
+                <Calculator engine={engine} />
+              </div>
+              <VariableMemory
+                vars={engine.vars}
+                setVar={engine.setVar}
+                clearVars={engine.clearVars}
+              />
+            </section>
+
+            <section className="mx-auto w-full max-w-3xl">
+              <h2 className="font-display text-2xl font-bold text-[var(--c-text)]">
+                Built for long study sessions.
+              </h2>
+              <p
+                className="mt-3 text-[var(--c-text-dim)]"
+                style={{ maxWidth: "65ch", lineHeight: 1.7 }}
+              >
+                Every workspace shares the same keyboard, the same memory registers and the same
+                quiet paper palette. Matrix Studio handles determinants, inverses and adjoints.
+                Probability and Statistics covers distributions alongside nPr and nCr. The Formula
+                Compiler turns your own expressions into reusable tools, while the Constants Hub
+                keeps physics, chemistry, maths and SI references one keystroke away.
+              </p>
+              <p
+                className="mt-4 text-[var(--c-text-dim)]"
+                style={{ maxWidth: "65ch", lineHeight: 1.7 }}
+              >
+                The optional AI Tutor answers questions, explains each step and builds short quizzes
+                when you connect a key. Everything else works offline.
+              </p>
+            </section>
           </div>
         )}
 

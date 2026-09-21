@@ -66,7 +66,7 @@ export function Sidebar({
           open ? "translate-x-0" : "-translate-x-full",
         )}
         style={{
-          background: "linear-gradient(180deg, var(--c-soft), var(--c-bg2))",
+          background: "var(--c-panel)",
         }}
       >
         {/* brand header */}

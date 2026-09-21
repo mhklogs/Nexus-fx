@@ -271,7 +271,7 @@ export function Calculator({ engine }: { engine: CalcEngine }) {
     <div
       className="relative w-full max-w-[420px] overflow-hidden rounded-[1.2rem] sm:rounded-[1.6rem] border border-[var(--c-border)] p-2 sm:p-3 shadow-2xl"
       style={{
-        background: "linear-gradient(150deg, var(--c-body), var(--c-body2))",
+        background: "var(--c-body)",
       }}
     >
       {/* top brand strip */}
@@ -295,10 +295,9 @@ export function Calculator({ engine }: { engine: CalcEngine }) {
 
       {/* DISPLAY */}
       <div
-        className="mb-3 rounded-lg border border-[var(--c-display-edge)] p-2.5 shadow-inner"
+        className="mb-3 rounded-2xl border border-[var(--c-display-edge)] p-2.5"
         style={{
-          background:
-            "linear-gradient(165deg, var(--c-display-bg), var(--c-display-bg2))",
+          background: "var(--c-display-bg)",
         }}
       >
         <div className="mb-1 flex items-center gap-2 text-[0.5rem] sm:text-[0.55rem] font-semibold text-[var(--c-display-text-dim)]">
@@ -352,7 +351,7 @@ export function Calculator({ engine }: { engine: CalcEngine }) {
                   className={cn(
                     "font-lcd",
                     justEvaluated && "text-[1.15em] text-[var(--c-display-text)]",
-                    resultIsError && "animate-pulse text-[var(--c-alpha)]",
+                    resultIsError && "text-[var(--c-alpha)]",
                   )}
                 >
                   {resultIsError ? "Math ERROR" : <>= <MathText value={resultText} /></>}

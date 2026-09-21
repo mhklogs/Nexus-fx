@@ -323,7 +323,7 @@ Return the response strictly adhering to the specified JSON schema representatio
           ))}
           {loading && (
             <div className="flex justify-start">
-              <div className="bg-[var(--c-bg2)] text-[var(--c-text-dim)] p-3 rounded-lg text-xs font-mono animate-pulse flex items-center gap-2">
+              <div className="bg-[var(--c-bg2)] text-[var(--c-text-dim)] p-3 rounded-2xl text-xs font-mono flex items-center gap-2">
                 <RefreshCw className="animate-spin w-4 h-4" /> Analyzing mathematical environment...
               </div>
             </div>

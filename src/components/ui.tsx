@@ -16,7 +16,7 @@ export function Panel({
   return (
     <div
       className={cn(
-        "rounded-xl border border-[var(--c-card-border)] bg-[var(--c-soft)] p-4 shadow-sm",
+        "rounded-2xl border border-[var(--c-card-border)] bg-[var(--c-soft)] p-5 shadow-sm",
         className,
       )}
     >
@@ -104,9 +104,9 @@ export function Btn({
 }) {
   const styles: Record<string, string> = {
     primary:
-      "bg-[var(--c-accent)] text-[var(--c-bg)] hover:brightness-110 font-semibold",
+      "bg-[var(--c-eq)] text-[var(--c-eq-text)] hover:-translate-y-0.5 font-semibold",
     accent:
-      "bg-[var(--c-eq)] text-[var(--c-eq-text)] hover:brightness-110 font-semibold",
+      "bg-[var(--c-accent)] text-[var(--c-bg)] hover:-translate-y-0.5 font-semibold",
     ghost:
       "border border-[var(--c-card-border)] bg-[var(--c-soft2)] text-[var(--c-text)] hover:border-[var(--c-accent)]",
   };
@@ -117,7 +117,7 @@ export function Btn({
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        "rounded-lg px-3 py-2 text-sm transition disabled:cursor-not-allowed disabled:opacity-40",
+        "rounded-full px-4 py-2 text-sm transition disabled:cursor-not-allowed disabled:opacity-40",
         styles[variant],
         className,
       )}
