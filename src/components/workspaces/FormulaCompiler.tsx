@@ -105,7 +105,7 @@ export function FormulaCompiler() {
             </span>
           ) : (
             vars.map((v) => (
-              <span key={v} className="rounded-full border border-[var(--c-accent)]/40 bg-[var(--c-accent)]/10 px-2 py-0.5 font-mono text-xs text-[var(--c-accent)]">
+              <span key={v} className="rounded border border-[var(--c-accent)]/30 bg-[var(--c-accent)]/10 px-2 py-0.5 font-mono text-xs text-[var(--c-accent)]">
                 {v}
               </span>
             ))

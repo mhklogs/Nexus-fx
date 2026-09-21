@@ -168,7 +168,7 @@ export function MatrixStudio() {
         </div>
 
         <div className="border-t border-[var(--c-card-border)] pt-3">
-          <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-[var(--c-text-dim)]">
+          <div className="mb-2 text-xs font-medium text-[var(--c-text-dim)]">
             Binary operations
           </div>
           <div className="flex flex-wrap gap-2">

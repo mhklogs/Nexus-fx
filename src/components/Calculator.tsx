@@ -276,19 +276,16 @@ export function Calculator({ engine }: { engine: CalcEngine }) {
     >
       {/* top brand strip */}
       <div className="mb-2 flex items-center justify-between px-1">
-        <div className="flex items-baseline gap-1">
-          <span className="text-[0.8rem] font-black text-[var(--c-accent)] mr-0.5">∑</span>
-          <span className="text-[0.7rem] font-extrabold tracking-tight text-[var(--c-btn-text)]">
-            NEXUS
+        <div className="flex items-baseline gap-1.5">
+          <span className="text-[0.8rem] text-[var(--c-accent)]">∑</span>
+          <span className="font-display text-[0.75rem] font-medium tracking-tight text-[var(--c-btn-text)]">
+            NEXUS fx
           </span>
-          <span className="rounded bg-[var(--c-accent)] px-0.5 text-[0.5rem] font-black text-[var(--c-bg)] leading-none py-[1px]">
-            fx
-          </span>
-          <span className="ml-1.5 text-[0.55rem] font-semibold text-[var(--c-text-dim)]">
+          <span className="ml-1 text-[0.55rem] font-medium text-[var(--c-text-dim)]">
             fx-570ES PLUS · 2nd Edition
           </span>
         </div>
-        <span className="text-[0.45rem] font-bold uppercase tracking-wider text-[var(--c-text-dim)]/70">
+        <span className="font-display text-[0.55rem] italic text-[var(--c-text-dim)]">
           Natural-V.P.A.M.
         </span>
       </div>

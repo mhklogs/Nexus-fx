@@ -27,8 +27,7 @@ export function Panel({
 
 export function SectionTitle({ children }: { children: ReactNode }) {
   return (
-    <h3 className="mb-3 flex items-center gap-2 text-sm font-semibold uppercase tracking-wider text-[var(--c-accent)]">
-      <span className="h-3 w-1 rounded bg-[var(--c-accent)]" />
+    <h3 className="mb-3 font-display text-base font-medium text-[var(--c-text)]">
       {children}
     </h3>
   );
@@ -139,7 +138,7 @@ export function Stat({
 }) {
   return (
     <div className="rounded-lg border border-[var(--c-card-border)] bg-[var(--c-bg2)] p-2.5">
-      <div className="text-[0.65rem] font-medium uppercase tracking-wide text-[var(--c-text-dim)]">
+      <div className="text-[0.65rem] font-medium text-[var(--c-text-dim)]">
         {label}
       </div>
       <div className="mt-0.5 font-mono text-sm font-semibold text-[var(--c-text)]">
@@ -166,9 +165,9 @@ export function Chip({
       type="button"
       onClick={onClick}
       className={cn(
-        "rounded-full border px-3 py-1 text-xs font-medium transition",
+        "rounded-lg border px-3 py-1 text-xs font-medium transition",
         active
-          ? "border-[var(--c-accent)] bg-[var(--c-accent)] text-[var(--c-bg)]"
+          ? "border-transparent bg-[var(--c-accent)] text-[var(--c-bg)]"
           : "border-[var(--c-card-border)] bg-[var(--c-soft2)] text-[var(--c-text-dim)] hover:text-[var(--c-text)]",
       )}
     >

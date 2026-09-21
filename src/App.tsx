@@ -149,33 +149,33 @@ export default function App() {
       className="min-h-screen w-full"
       style={{
         ...themeVars(theme),
-        colorScheme: theme.dark ? "dark" : "light",
-        background:
-          "radial-gradient(120% 120% at 15% 0%, var(--c-bg2) 0%, var(--c-bg) 55%)",
+        colorScheme: "light",
+        background: "var(--c-bg)",
         color: "var(--c-text)",
       }}
     >
       {/* Header */}
-      <header className="sticky top-0 z-30 border-b border-[var(--c-card-border)] bg-[var(--c-bg)]/80 backdrop-blur-md">
-        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
+      <header className="sticky top-0 z-30 border-b border-[var(--c-card-border)]" style={{ background: "var(--c-bg)" }}>
+        <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-3.5">
           {/* hamburger + logo (top-left) */}
           <button
             onClick={() => setOpen(true)}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--c-card-border)] bg-[var(--c-soft2)] text-[var(--c-text)] transition hover:border-[var(--c-accent)]"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--c-card-border)] text-[var(--c-text)] transition hover:border-[var(--c-accent)]"
             aria-label="Open menu"
           >
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round">
               <path d="M3 6h18M3 12h18M3 18h18" />
             </svg>
           </button>
 
-          <div className="flex items-center gap-2 rounded-xl border border-lime-400/40 bg-black px-3 py-1.5 shadow-[0_0_20px_rgba(57,255,20,0.30)]">
-            <span className="text-base font-black text-lime-400">∑</span>
-            <span className="text-sm font-bold tracking-tight text-white">NEXUS</span>
-            <span className="rounded bg-lime-400 px-1 text-[0.6rem] font-black text-black">fx</span>
+          <div className="flex items-baseline gap-1.5">
+            <span className="text-xl leading-none text-[var(--c-accent)]">∑</span>
+            <span className="font-display text-lg font-medium tracking-tight text-[var(--c-text)]">
+              NEXUS fx
+            </span>
           </div>
 
-          <div className="ml-2 hidden text-[0.7rem] font-medium uppercase tracking-[0.18em] text-[var(--c-text-dim)] sm:block">
+          <div className="ml-1 hidden font-display text-[0.8rem] italic text-[var(--c-text-dim)] sm:block">
             {module === "home" ? "fx-570ES PLUS · 2nd Edition" : MODULE_TITLES[module]}
           </div>
 
@@ -183,24 +183,24 @@ export default function App() {
             {deferredPrompt && (
               <button
                 onClick={handleInstall}
-                className="flex h-10 items-center justify-center gap-2 rounded-lg border border-[var(--c-accent)] bg-[var(--c-accent)]/15 px-3 text-xs font-bold text-[var(--c-accent)] transition hover:bg-[var(--c-accent)]/30 active:scale-95 cursor-pointer"
+                className="flex h-10 cursor-pointer items-center justify-center gap-2 rounded-lg bg-[var(--c-accent)] px-4 text-xs font-semibold text-white transition hover:opacity-90"
                 title="Install app on device"
                 aria-label="Install app"
               >
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                   <polyline points="7 10 12 15 17 10" />
                   <line x1="12" y1="15" x2="12" y2="3" />
                 </svg>
-                <span className="hidden sm:inline">Install App</span>
+                <span className="hidden sm:inline">Install app</span>
               </button>
             )}
-            <span className="hidden rounded-md border border-[var(--c-card-border)] bg-[var(--c-soft2)] px-2 py-1 text-xs text-[var(--c-text-dim)] md:inline">
+            <span className="hidden rounded-md border border-[var(--c-card-border)] px-2 py-1 text-xs text-[var(--c-text-dim)] md:inline">
               {theme.name}
             </span>
             <button
               onClick={cycleTheme}
-              className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--c-card-border)] bg-[var(--c-soft2)] text-[var(--c-text)] transition hover:border-[var(--c-accent)]"
+              className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--c-card-border)] text-[var(--c-text)] transition hover:border-[var(--c-accent)]"
               title="Cycle theme"
               aria-label="Cycle theme"
             >

@@ -489,7 +489,7 @@ Return the response strictly adhering to the specified JSON schema representatio
             <GraduationCap className="w-12 h-12 text-[var(--c-accent)] animate-bounce" />
             <h3 className="text-lg font-bold text-[var(--c-text)] font-mono">Quiz Completed!</h3>
             <div className="space-y-1 bg-[var(--c-bg2)]/60 p-4 rounded-xl border border-[var(--c-card-border)] w-full">
-              <span className="text-[0.65rem] font-mono text-[var(--c-text-dim)] uppercase tracking-wide">Your Score</span>
+              <span className="text-[0.65rem] text-[var(--c-text-dim)]">Your score</span>
               <div className="text-3xl font-mono font-black text-[var(--c-accent)]">
                 {score} / {quizQuestions.length}
               </div>

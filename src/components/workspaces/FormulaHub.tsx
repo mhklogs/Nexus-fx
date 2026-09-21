@@ -111,7 +111,7 @@ export function FormulaHub({ onPaste }: { onPaste: (expr: string) => void }) {
             <Panel key={c.sym + c.name} className="flex flex-col gap-2">
               <div className="flex items-baseline justify-between">
                 <span className="font-mono text-lg font-bold text-[var(--c-accent)]">{c.sym}</span>
-                <span className="text-[0.6rem] uppercase tracking-wide text-[var(--c-text-dim)]">{c.group}</span>
+                <span className="text-[0.72rem] font-medium text-[var(--c-text-dim)]">{c.group}</span>
               </div>
               <div className="text-sm text-[var(--c-text)]">{c.name}</div>
               <div className="font-mono text-xs text-[var(--c-text-dim)]">{c.value}</div>

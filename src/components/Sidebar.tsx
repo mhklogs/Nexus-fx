@@ -54,7 +54,7 @@ export function Sidebar({
       <div
         onClick={onClose}
         className={cn(
-          "fixed inset-0 z-40 bg-black/50 backdrop-blur-[2px] transition-opacity duration-300",
+          "fixed inset-0 z-40 bg-[var(--c-text)]/25 transition-opacity duration-300",
           open ? "opacity-100" : "pointer-events-none opacity-0",
         )}
       />
@@ -71,13 +71,13 @@ export function Sidebar({
       >
         {/* brand header */}
         <div className="flex items-center gap-3 border-b border-[var(--c-card-border)] p-4">
-          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-lime-400/40 bg-black shadow-[0_0_18px_rgba(57,255,20,0.35)]">
-            <span className="text-lg font-black text-lime-400">∑</span>
+          <div className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--c-card-border)] bg-[var(--c-soft2)]">
+            <span className="text-base text-[var(--c-accent)]">∑</span>
           </div>
           <div className="leading-tight">
-            <div className="text-sm font-bold text-[var(--c-text)]">NEXUS fx</div>
+            <div className="font-display text-sm font-medium text-[var(--c-text)]">NEXUS fx</div>
             <div className="text-[0.65rem] text-[var(--c-text-dim)]">
-              Engineering Workspace
+              Engineering workspace
             </div>
           </div>
           <button
@@ -93,7 +93,7 @@ export function Sidebar({
 
         {/* nav */}
         <nav className="flex-1 space-y-1 overflow-y-auto p-3">
-          <div className="px-2 pb-1 pt-2 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[var(--c-text-dim)]">
+          <div className="px-2 pb-1 pt-2 text-[0.72rem] font-medium text-[var(--c-text-dim)]">
             Workspaces
           </div>
           {NAV.map((item) => {
@@ -140,8 +140,8 @@ export function Sidebar({
 
         {/* appearance / themes */}
         <div className="border-t border-[var(--c-card-border)] p-3">
-          <div className="mb-2 px-1 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-[var(--c-text-dim)]">
-            Appearance · 5 Themes
+          <div className="mb-2 px-1 text-[0.72rem] font-medium text-[var(--c-text-dim)]">
+            Appearance
           </div>
           <div className="grid grid-cols-2 gap-2">
             {THEMES.map((t) => {
